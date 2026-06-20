@@ -648,4 +648,16 @@
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1280, &quot;height&quot;: 900}}"></script>
 
 
+
+<script>
+(function(){
+  function postH(){
+    var h=Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight);
+    if(window.parent!==window){ parent.postMessage({__lpHeight:h}, "*"); }
+  }
+  window.addEventListener("load", postH);
+  try{ new ResizeObserver(postH).observe(document.body); }catch(e){}
+  [400,1000,2000,3500,6000].forEach(function(t){ setTimeout(postH,t); });
+})();
+</script>
 </body></html>
